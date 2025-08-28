@@ -6,6 +6,7 @@ import 'features/menu/presentation/menu_page.dart';
 import 'features/profile/presentation/profile_page.dart';
 import 'features/chatbox/presentation/chatbox_page.dart';
 import 'features/login_register/presentation/login_page.dart';
+import 'features/login_register/domain/user_model.dart';
 
 void main() {
   runApp(const MyApp());
@@ -28,7 +29,8 @@ class MyApp extends StatelessWidget {
 
 // MainScreen giữ nguyên...
 class MainScreen extends StatefulWidget {
-  const MainScreen({super.key, required this.title});
+  final User user;
+  const MainScreen({super.key, required this.title, required this.user});
 
   final String title;
 
@@ -38,12 +40,18 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   int _currentIndex = 0;
-  final List<Widget> _pages = [
-    const HomePage(title: "HOMPAGE"),
-    const MenuPage(),
-    const ChatBoxPage(),
-    const ProfilePage(),
-  ];
+  late final List<Widget> _pages;
+
+  @override
+  void initState() {
+    super.initState();
+    _pages = [
+      const HomePage(title: "HOMPAGE"),
+      const MenuPage(),
+      const ChatBoxPage(),
+      ProfilePage(user: widget.user), // <-- Truy cập widget.user ở đây
+    ];
+  }
 
   @override
   Widget build(BuildContext context) {

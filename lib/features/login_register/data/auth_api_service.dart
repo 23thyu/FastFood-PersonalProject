@@ -225,35 +225,4 @@ class AuthApiService {
       }
     }
   }
-
-  // Hàm logout giữ nguyên
-  static Future<void> logout(String token) async {
-    try {
-      print('🔄 AuthAPI: Bắt đầu đăng xuất...');
-
-      final url = Uri.parse('${ApiEndpoints.baseUrl}/users/logout');
-
-      final response = await http.post(
-        url,
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-          'Authorization': 'Bearer $token',
-        },
-      );
-
-      print('📥 AuthAPI: Logout response status = ${response.statusCode}');
-
-      if (response.statusCode == 200) {
-        print('✅ AuthAPI: Đăng xuất thành công');
-      } else {
-        print(
-          '⚠️ AuthAPI: Đăng xuất không thành công nhưng vẫn clear local data',
-        );
-      }
-    } catch (e) {
-      print('❌ AuthAPI: Exception during logout: $e');
-      // Không throw error vì logout vẫn có thể thành công ở local
-    }
-  }
 }

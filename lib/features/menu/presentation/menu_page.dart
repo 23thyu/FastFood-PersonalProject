@@ -312,7 +312,7 @@ class _MenuPageState extends State<MenuPage> {
                     decoration: BoxDecoration(
                       border: Border.all(
                         color: isSelected
-                            ? AppColors.gray
+                            ? AppColors.darkGreen
                             : Colors.transparent, // Border cam nếu được chọn
                         width: 2,
                       ),
